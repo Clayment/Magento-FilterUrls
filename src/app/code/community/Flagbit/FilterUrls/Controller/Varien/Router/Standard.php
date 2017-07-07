@@ -38,10 +38,19 @@ class Flagbit_FilterUrls_Controller_Varien_Router_Standard extends Mage_Core_Con
 
         if ($request->getModuleName() === 'catalog' && $request->getControllerName() === 'category' && $request->getActionName() === 'view') {
             $redirect = Mage::getModel('filterurls/catalog_layer_filter_item')->getSpeakingFilterUrl(FALSE, TRUE);
-            Mage::app()->getFrontController()->getResponse()
-                ->setRedirect($redirect, 301)
-                ->sendResponse();
-            exit();
+            $redirectR = new Zend_Controller_Request_Http($redirect);
+            /* @var $parser Flagbit_FilterUrls_Model_Parser */
+            $identifier = trim($redirectR->getPathInfo(), '/');
+            $parser = Mage::getModel('filterurls/parser');
+            $parsedRequestInfo = $parser->parseFilterInformationFromRequest($identifier, Mage::app()->getStore()->getId());
+
+            if ($parsedRequestInfo) {
+                Mage::app()->getFrontController()->getResponse()
+                    ->setRedirect($redirect, 301)
+                    ->sendResponse();
+                exit();
+            }
+
         }
 
         return $match;
