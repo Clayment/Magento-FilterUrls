@@ -114,4 +114,26 @@
             </filterurls_sitemap>
         </jobs>
     </crontab>
+    <stores>
+        <default>
+            <web>
+                <routers>
+                    <standard>
+                        <area>frontend</area>
+                        <class>Flagbit_FilterUrls_Controller_Varien_Router_Standard</class>
+                    </standard>
+                </routers>
+            </web>
+        </default>
+    </stores>
+    <default>
+        <web>
+            <routers>
+                <standard>
+                    <area>frontend</area>
+                    <class>Flagbit_FilterUrls_Controller_Varien_Router_Standard</class>
+                </standard>
+            </routers>
+        </web>
+    </default>
 </config>

@@ -4,6 +4,7 @@
         <Flagbit_FilterUrls>
             <active>true</active>
             <codePool>community</codePool>
+            <require>Mage_Core</require>
         </Flagbit_FilterUrls>
     </modules>
 </config>
